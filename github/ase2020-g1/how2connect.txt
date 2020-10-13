@@ -1,0 +1,7 @@
+How to Connect and Communication
+
+1. (Raspi) showStat.pyにて接続先(サーバーの)IPアドレスを定数HOSTに設定する．
+
+2. (Server) python2でsocket_host.pyを実行，接続待ち状態になる．
+
+3. (Raspi) showStat.pyを実行すると，画像をサーバーに送信し結果が帰ってくる．

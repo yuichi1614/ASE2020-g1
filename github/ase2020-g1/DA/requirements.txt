@@ -1,0 +1,6 @@
+pip install -r requirement.txt
+
+
+图片文件修改地址
+DI->settings.py，修改
+MEDIAS_ROOT = '/home/medias/'

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+img{
+width: auto;
+height: auto;
+max-width: 100%;
+max-height: 100%;
+}
+{% block style %}
+
+    .imageN {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    }
+{% endblock %}
+
+
+{% block content %}
+    <div class="layui-container">
+        <blockquote class="layui-elem-quote" style="height: 30px;">
+            <div class="layui-col-md10" style="height: 30px;">
+                <h1>WEB APP</h1>
+            </div>
+            <div class="layui-col-md2">
+                <button type="button" id="refreshAction"
+                        class="layui-btn layui-btn-danger layui-btn-primary layui-btn-sm" style="width:100px;">刷新
+                </button>
+            </div>
+        </blockquote>
+
+        <div style="padding: 20px; background-color: #F2F2F2;">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md6">
+                    <div class="layui-col-md12 ">
+                        <img id="image" src="/medias/{{ data.f }}" class="imageN">
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-tab-item layui-show">
+                        <h1>Mask</h1>
+                        <h2>Time: <span id="datetime" style="font-size: 16px;">{{ data.t }}</span></h2>
+                        <h2>Number of People: <span id="num" style="font-size: 16px;">{{ data.num }}</span></h2>
+                        <h2>Distance: <span id="distance" style="font-size: 16px;">{{ data.distance }}</span></h2>
+                        <h2>Mask People: <span id="mask" style="font-size: 16px;">{{ data.mask }}</span></h2>
+                        <h2>No Mask People: <span id="no_mask" style="font-size: 16px;">{{ data.no_mask }}</span></h2>
+                        <h2>Situation: <span id="situation" style="font-size: 16px;">{{ data.situation }}</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block js %}
+    <script>
+        layui.use('layer', function () {
+            var $ = layui.jquery;
+            $('#refreshAction').on('click', function () {
+                $.ajax({
+                    url: "/refresh/",
+                    data: {'key': "111"},
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        $("#image").attr('src', "/medias/" + data.f);
+                        $("#datetime").html(data.t);
+                        $("#num").html(data.num);
+                        $("#distance").html(data.distance);
+                        $("#mask").html(data.mask);
+                        $("#no_mask").html(data.no_mask);
+                        $("#situation").html(data.situation);
+                    },
+                    error: function (data) {
+
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

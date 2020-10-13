@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WEB APP</title>
+    <meta http-equiv="refresh" content="10">
+    {#  注意引入文件的方式  #}
+    {% load static %}
+    <link rel="stylesheet" href={% static "layui/css/layui.css" %}>
+    <style type="text/css">
+        {% block style %}
+        {% endblock %}
+    </style>
+</head>
+<body>
+{% block content %}
+
+{% endblock %}
+
+<script src={% static "layui/layui.js" %} charset="utf-8"></script>
+{% block js %}
+
+{% endblock %}
+</body>
+</html>
